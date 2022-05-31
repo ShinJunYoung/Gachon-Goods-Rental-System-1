@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>가천대 물품 대여 시스템</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="img/core-img/gachonlogo.png">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="./css_file/style.css">
+    <link rel="stylesheet" type="text/css" href="./css_file/main.css" />
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+
+    <script crc="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="resource/alertify.core.css"/>
+    <link rel="stylesheet" href="resource/alertify.default.css" id = "toggleCSS"/>
+    <script src="resource/alertify.min.js"></script>
+
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="medilife-load"></div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <!-- Main Header Area -->
+        <div class="main-header-area" id="stickyHeader">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 h-100">
+                        <div class="main-menu h-100">
+                            <nav class="navbar h-100 navbar-expand-lg">
+                                <!-- Logo Area  -->
+
+                                <a class="navbar-brand" href="index.html"><img src="img/core-img/logo.png" alt="Logo"></a>
+
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#medilifeMenu" aria-controls="medilifeMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                                <div class="collapse navbar-collapse" id="medilifeMenu">
+                                    <!-- Menu Area -->
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="index.html">홈<span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="reservation.html">장비 예약</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="reservation_info.html">예약 확인</a>
+                                        </li>
+                                    </ul>
+                                    <!-- Login Button -->
+                                    <div id="on_btn">
+                                      <a id = "log-memu" href="log_in.html" type="button" class="btn medilife-appoint-btn ml-30">로그인</a>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Breadcumb Area Start ***** -->
+    <section class="breadcumb-area bg-img gradient-background-overlay" style="background-image: url(img/bg-img/bg1.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-content">
+                        <h3 class="breadcumb-title">장비 예약</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Breadcumb Area End ***** -->
+
+    <!-- ***** Book An Appoinment Area Start ***** -->
+    <div class="medilife-book-an-appoinment-area">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="appointment-form-content">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-12 col-lg-9">
+                                <div class="medilife-appointment-form">
+                                    <!--<form action="#" method="post">-->
+                                        <div class="row align-items-end">
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                  <!--hospital selection part-->
+                                                    <select class="form-control" onchange="categoryChange1(this)" id="area">
+                                                      <option>장비를 고르시오.</option>
+                                                      <option value="노트북">노트북</option>
+                                                      <option value="카메라">카메라</option>
+                                                      <option value="마이크">마이크</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <!--Part of choosing the date, time, and purpose of the appointment
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <select class="form-control" onchange="categoryChange2(this)" id="hospital">
+                                                    <option>Please select a hospital</option>
+                                                </select>
+                                                </div>
+                                            </div>-->
+                                            <div class="col-12 col-md-4">
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="date" class="form-control" onchange="dateSelected(event);" name="date" id="date" min="" placeholder="Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                  <select class="form-control" id="time">
+                                                    <option>사용 시간</option>
+                                                      <option value="9:00 ~ 10:00">9:00 ~ 10:00</option>
+                                                      <option value="10:00 ~ 11:00">10:00 ~ 11:00</option>
+                                                      <option value="11:00 ~ 12:00">11:00 ~ 12:00</option>
+                                                      <option value="12:00 ~ 13:00">12:00 ~ 13:00</option>
+                                                      <option value="13:00 ~ 14:00">13:00 ~ 14:00</option>
+                                                      <option value="14:00 ~ 15:00">14:00 ~ 15:00</option>
+                                                      <option value="15:00 ~ 16:00">15:00 ~ 16:00</option>
+                                                      <option value="16:00 ~ 17:00">16:00 ~ 17:00</option>
+
+                                                  </select>
+                                                </div>
+                                            </div>
+
+                                            <!--<div class="col-12 col-md-4">
+                                              <div class="form-group">
+                                                  <select class="form-control" id="purpose">
+                                                  <option>purpose</option>
+                                                  <option>미용</option>
+                                                  <option>예방접종</option>
+                                                  <option>정기검진</option>
+                                                  <option>치료</option>
+                                              </select>
+                                              </div>
+                                            </div>-->
+                                            <div class="col-12 col-md-12">
+
+                                              <h2>학생 정보</h2>
+                                            </div>
+
+                                            <!--Personal Information Input Part-->
+
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="name" id="name" placeholder="이름">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="number" id="phone" placeholder="전화번호">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                            </div>
+
+                                            <div class="col-12 col-md-3">
+                                                <div class="form-group">
+                                                  <input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="Pet Name" id="petName" placeholder="전공">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-12 col-md-3">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="PetAge" id="petAge" placeholder="학번">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-3">
+                                              <div class="form-group">
+                                                  <input type="text" class="form-control border-top-0 border-right-0 border-left-0" name="PetSpecies" id="petSpecies" placeholder="목적">
+                                              </div>
+                                            </div>
+                                            <!--<div class="col-12 col-md-3">
+                                              <div class="form-group">
+                                                  <select class="form-control" id="petGender">
+                                                  <option>Gender</option>
+                                                  <option>남자</option>
+                                                  <option>여자</option>
+                                                </select>
+                                              </div>
+                                            </div>-->
+
+                                            <div class="col-12 col-md-7">
+                                                <div class="form-group mb-0">
+                                                    <textarea name="message" class="form-control mb-0 border-top-0 border-right-0 border-left-0" id="message" cols="30" rows="10" placeholder="메세지"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-5 mb-0">
+                                                <div class="form-group mb-0">
+                                                    <button class="btn medilife-btn"
+                                                    onclick ='reserve()'>예약하기 <!--<span>+</span>--></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--The part where the selected hospital information appears.-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Book An Appoinment Area End ***** -->
+    <script src="js/reservation.js"></script>
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <!--<script src="js/plugins.js"></script>-->
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+
+
+
+    <!-- hosting info -->
+    <script src="config.js"></script>
+    <script src="account.js"></script>
+</body>
+
+</html>
